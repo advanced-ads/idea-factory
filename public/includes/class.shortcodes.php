@@ -51,7 +51,6 @@ class ideaFactoryShortcodes {
 					'post_type'			=> 'ideas',
 					'meta_key'			=> '_idea_votes',
 					'orderby'			=> 'meta_value_num',
-					'posts_per_page'	=> 30,
 					'paged'				=> $paged
 				);
 				$q = new WP_Query( apply_filters('idea_factory_query_args', $args ) );
