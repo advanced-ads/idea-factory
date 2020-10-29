@@ -175,7 +175,6 @@ function idea_factory_is_archive(){
 */
 function idea_factory_is_voting_active( $postid = '' ) {
 
-
 	$status      	= idea_factory_get_status( $postid );
 
 	$public_can_vote = idea_factory_get_option('if_public_voting','if_settings_main');
@@ -259,8 +258,7 @@ function idea_factory_has_public_voted( $postid = '', $ip = '' ) {
 
 	if ( empty( $ip ) )
 		$ip =  isset( $_SERVER['REMOTE_ADDR'] ) ? $_SERVER['REMOTE_ADDR'] : 0;
-
-
+        
     global $wpdb;
 
     $table = $wpdb->base_prefix.'idea_factory';
@@ -268,7 +266,7 @@ function idea_factory_has_public_voted( $postid = '', $ip = '' ) {
    	$sql =  $wpdb->prepare('SELECT * FROM '.$table.' WHERE ip ="%s" AND postid ="%d"', $ip, $postid );
 
    	$result =  $wpdb->get_results( $sql );
-
+        
 	if ( $result ) {
 
 		return true;
