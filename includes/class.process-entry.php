@@ -107,12 +107,20 @@ class ideaFactoryProcessEntry {
 		$message .= admin_url('edit.php?post_type=ideas');
 
 		/**
+		 * Filter the email content
+		 *
+		 * @param $entry_id int postid object
+		 * @param $userid int userid object
+		 */
+		$message = apply_filters( 'idea_factory_send_mail_message', $message, $entry_id, $userid );
+
+		/**
 		 * Allow sending custom headers
 		 *
 		 * @param $entry_id int postid object
 		 * @param $userid int userid object
 		 */
-		$headers = apply_filter( 'idea_factory_send_mail_headers', '', $entry_id, $userid );
+		$headers = apply_filters( 'idea_factory_send_mail_headers', '', $entry_id, $userid );
 
 		if ( !isset($mail_disabled) || $mail_disabled == 'off' )
                     wp_mail( $admin_email, sprintf(__('New Idea Submission - %s', 'idea-factory'), $entry_id), $message, $headers );
