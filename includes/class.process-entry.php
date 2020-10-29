@@ -94,7 +94,7 @@ class ideaFactoryProcessEntry {
 	function send_mail( $entry_id, $userid ) {
 
 		$user 		 	= get_userdata( $userid );
-		$admin_email 	= get_bloginfo('admin_email');
+		$admin_email 	= apply_filters( 'idea_factory_admin_email', get_bloginfo('admin_email') );
 		$entry       	= get_post( $entry_id );
 		$mail_disabled 	= idea_factory_get_option('if_disable_mail','if_settings_advanced');
 

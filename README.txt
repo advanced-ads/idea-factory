@@ -1,15 +1,11 @@
 === Idea Factory ===
-Contributors: nphaskins, tmeister
-Author URI:  http://nickhaskins.com
-Plugin URI: http://wpideafactory.com/
-Donate link: http://wpideafactory.com/
+Contributors: nphaskins, tmeister, webzunft
 Tags: vote, voting, idea, feedback, user submission, front end submission, front end voting
-Requires at least: 3.8
-Tested up to: 4.3
+Requires at least: 5.0
+Tested up to: 5.4
 Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-
 
 Front end submission and voting system.
 
@@ -58,14 +54,15 @@ Yep. Copy the file from idea-factory/templates/template-ideas into your theme an
 4. You can change a few settings here
 5. And more settings here
 
-== Upgrade Notice ==
-
-= 1.0 =
-* Initial Release
-
 == Changelog ==
 
+= untagged =
+
+- introduced `idea_factory_admin_email` filter to set sender email address to something other than the WP admin email
+- fixed missing index issues
+
 = 1.2 =
+
 * NEW - Added an option to enable public voting
 * NEW - Added a reset button to reset public votes
 * NEW - Added "Author" to the Ideas
@@ -78,6 +75,7 @@ Yep. Copy the file from idea-factory/templates/template-ideas into your theme an
 * FIXED - Added high priority to load the plugin styles after the theme styles to avoid CSS override and to not use !important.
 
 = 1.1 =
+
 * NEW - Added a "threshold" option where, when set with a numerical value such as 10, each idea will then be automatically approved or declined based on reaching 10 or more total votes and will send the site admin an email with the status update
 * NEW - Added a dropdown box on all ideas to manually change the status
 * NEW - Added an option to manually reset all votes on all ideas back to zero

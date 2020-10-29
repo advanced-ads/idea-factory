@@ -70,16 +70,22 @@ class ideaFactoryShortcodes {
 
 							$has_voted 		= get_user_meta( get_current_user_ID(), '_idea'.$id.'_has_voted', true);
 
-						} elseif( $public_can_vote ) {
+						} elseif( isset( $public_can_vote ) && $public_can_vote ) {
 
 							$has_voted 		= idea_factory_has_public_voted( $id );
 
+						} else {
+						
+							$has_voted = false;
+						
 						}
-
+                                                
 						$total_votes 	= idea_factory_get_votes( $id );
 						$status      	= idea_factory_get_status( $id );
 
 						$status_class   = $status ? sprintf('idea-factory--entry__%s', $status ) : false;
+						
+						$public_can_vote = idea_factory_get_option('if_public_voting','if_settings_main');
 
 						?>
 						<section class="idea-factory--entry-wrap <?php echo sanitize_html_class( $status_class );?> <?php echo $has_voted ? 'idea-factory--hasvoted' : false;?>">
@@ -88,7 +94,8 @@ class ideaFactoryShortcodes {
 
 							<div class="idea-factory--controls">
 
-								<?php if ( idea_factory_is_voting_active( $id ) && $show_voting ){
+								<?php                                                                 
+                                                                if ( idea_factory_is_voting_active( $id ) && $show_voting ){
 
 									echo idea_factory_vote_controls( $id );
 
@@ -127,7 +134,7 @@ class ideaFactoryShortcodes {
 
 								<?php the_title('<h2>','</h2>');
 
-								the_content(); ?>
+								echo get_the_content(); ?>
 
 							</div>
 
