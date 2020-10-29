@@ -37,7 +37,7 @@ class ideaFactoryProcessEntry {
 			// ok security passes so let's process some data
 			if ( wp_verify_nonce( $_POST['nonce'], 'if-entry-nonce' ) ) {
 
-				// bail if we dont have rquired fields
+				// bail if we dont have required fields
 				if ( empty( $title ) || empty( $desc ) ) {
 
 					printf(('<div class="error">%s</div>'), __('Whoopsy! Looks like you forgot the Title and/or description.', 'idea-factory'));
@@ -106,8 +106,16 @@ class ideaFactoryProcessEntry {
 		$message .= __("Manage all ideas at", 'idea-factory') . "\n";
 		$message .= admin_url('edit.php?post_type=ideas');
 
+		/**
+		 * Allow sending custom headers
+		 *
+		 * @param $entry_id int postid object
+		 * @param $userid int userid object
+		 */
+		$headers = apply_filter( 'idea_factory_send_mail_headers', '', $entry_id, $userid );
+
 		if ( !isset($mail_disabled) || $mail_disabled == 'off' )
-                    wp_mail( $admin_email, sprintf(__('New Idea Submission - %s', 'idea-factory'), $entry_id), $message );
+                    wp_mail( $admin_email, sprintf(__('New Idea Submission - %s', 'idea-factory'), $entry_id), $message, $headers );
 
 	}
 

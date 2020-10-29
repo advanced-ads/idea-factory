@@ -84,7 +84,7 @@ function idea_factory_get_option( $option, $section, $default = '' ) {
 *	as well as through a callback upon saving in the backend
 *
 *	@since 1.0
-*	@return a sanitized string
+*	@return string a sanitized string
 */
 function idea_factory_media_filter( $input = '' ) {
 
@@ -112,9 +112,7 @@ function idea_factory_media_filter( $input = '' ) {
 		'strong' 		=> array()
 	);
 
-	$out = wp_kses( $input, apply_filters('idea_factory_allowed_html', $allowed_html ) );
-
-	return $out;
+	return wp_kses( $input, apply_filters('idea_factory_allowed_html', $allowed_html ) );
 }
 
 /**

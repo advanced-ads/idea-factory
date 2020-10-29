@@ -58,6 +58,7 @@ Yep. Copy the file from idea-factory/templates/template-ideas into your theme an
 
 = untagged =
 
+- introduced `idea_factory_send_mail_header` to customize email headers
 - introduced `idea_factory_admin_email` filter to set sender email address to something other than the WP admin email
 - fixed missing index issues
 
