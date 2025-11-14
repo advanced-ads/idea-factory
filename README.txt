@@ -1,9 +1,9 @@
 === Idea Factory ===
-Contributors: nphaskins, tmeister, webzunft
+Contributors: nphaskins, tmeister, webzunft, rahulmanek
 Tags: vote, voting, idea, feedback, user submission, front end submission, front end voting
 Requires at least: 5.0
-Tested up to: 5.4
-Stable tag: 1.2
+Tested up to: 6.8
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,6 +55,10 @@ Yep. Copy the file from idea-factory/templates/template-ideas into your theme an
 5. And more settings here
 
 == Changelog ==
+
+= 1.3 =
+
+* NEW - reCAPTCHA v2 with settings to prevent automated entries
 
 = untagged =
 
