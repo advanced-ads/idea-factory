@@ -1,0 +1,20 @@
+{
+  "name": "idea-factory",
+  "description": "WordPress plugin for user-submitted ideas with voting",
+  "author": "Rahul Manek <rahulmanek1991@gmail.com>",
+  "license": "GPL-2.0-or-later",
+  "scripts": {
+    "build": "npm run build:js",
+    "build:js": "terser public/assets/js/transition.js public/assets/js/modal.js public/assets/js/load-posts.js public/assets/js/general.js -o public/assets/js/idea-factory.js -c -m --comments false",
+    "build:watch": "npm run build:js -- --watch",
+    "dev": "npm run build:js"
+  },
+  "devDependencies": {
+    "terser": "^5.24.0"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  }
+}
+

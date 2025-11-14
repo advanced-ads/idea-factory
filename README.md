@@ -14,7 +14,7 @@ Idea Factory was born out of necessity, and the frustration of the lack of plugi
 
 ---
 
-### Features  
+### Features
 * AJAX powered front-end submission and voting
 * Works for both logged-in and logged-out users
 * 1 vote allowed per user per idea
@@ -27,23 +27,39 @@ Idea Factory was born out of necessity, and the frustration of the lack of plugi
 
 ---
 
-### Installation  
-##### Uploading in WordPress Dashboard    
+### Installation
+##### Uploading in WordPress Dashboard
 
-1. Navigate to 'Add New' in the plugins dashboard  
-2. Navigate to the 'Upload' area  
-3. Select `idea-factoryzip` from your computer  
-4. Click 'Install Now'  
-5. Activate the plugin in the Plugin dashboard  
+1. Navigate to 'Add New' in the plugins dashboard
+2. Navigate to the 'Upload' area
+3. Select `idea-factoryzip` from your computer
+4. Click 'Install Now'
+5. Activate the plugin in the Plugin dashboard
 
-##### Using FTP  
+##### Using FTP
 
-1. Download `idea-factory.zip`  
-2. Extract the `idea-factory` directory to your computer  
-3. Upload the `idea-factory` directory to the `/wp-content/plugins/` directory  
-4. Activate the plugin in the Plugin dashboard    
+1. Download `idea-factory.zip`
+2. Extract the `idea-factory` directory to your computer
+3. Upload the `idea-factory` directory to the `/wp-content/plugins/` directory
+4. Activate the plugin in the Plugin dashboard
 
 ---
 
 ##### Documentation
-Refer to the [Wiki](https://github.com/Tmeister/idea-factory/) here in the repo for documentation on hooks, filters, and actions available.  
+Refer to the [Wiki](https://github.com/Tmeister/idea-factory/) here in the repo for documentation on hooks, filters, and actions available.
+
+---
+
+### Development
+
+#### Building JavaScript
+
+The plugin uses npm for building the minified JavaScript file. After editing source files in `public/assets/js/`, rebuild:
+
+```bash
+npm install  # First time only
+npm run build
+```
+
+**Source files:** `transition.js`, `modal.js`, `load-posts.js`, `general.js`
+**Output:** `public/assets/js/idea-factory.js` (auto-generated, do not edit directly)
