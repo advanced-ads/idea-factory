@@ -27,6 +27,12 @@ class ideaFactoryAssetLoader {
 	    		wp_enqueue_style('idea-factory-css', IDEA_FACTORY_URL.'/public/assets/css/idea-factory.css', IDEA_FACTORY_VERSION, true );
 			}
 
+			// Enqueue reCAPTCHA script if keys are configured
+			$recaptcha_site_key = idea_factory_get_option( 'if_recaptcha_site_key','if_settings_main' );
+			if ( !empty( $recaptcha_site_key ) ) {
+				wp_enqueue_script( 'google-recaptcha', 'https://www.google.com/recaptcha/api.js', array(), null, true );
+			}
+
 			wp_enqueue_script('idea-factory-script', IDEA_FACTORY_URL.'/public/assets/js/idea-factory.js', array('jquery'), IDEA_FACTORY_VERSION, true);
 			wp_localize_script('idea-factory-script', 'idea_factory', idea_factory_localized_args( $max , $paged) );
 

@@ -295,13 +295,29 @@ class if_settings_api_wrap {
                     'default' 			=> '',
                     'sanitize_callback' => 'idea_factory_sanitize_checkbox'
                 ),
-            	array(
+                array(
                     'name' 				=> 'if_threshold',
                     'label' 			=> __( 'Voting Threshold', 'idea-factory' ),
                     'desc' 				=> __( 'Specify an optional number of votes that each idea must reach in order for its status to be automatically updated to "approved" , "declined", or "open."', 'idea-factory' ),
                     'type' 				=> 'text',
                     'default' 			=> '',
                     'sanitize_callback' => 'idea_factory_sanitize_int'
+                ),
+                array(
+                    'name' 				=> 'if_recaptcha_site_key',
+                    'label' 			=> __( 'reCAPTCHA Site Key', 'idea-factory' ),
+                    'desc' 				=> __( 'Enter your Google reCAPTCHA v2 Site Key. Get your keys from <a href="https://www.google.com/recaptcha/admin" target="_blank">Google reCAPTCHA</a>.', 'idea-factory' ),
+                    'type' 				=> 'text',
+                    'default' 			=> '',
+                    'sanitize_callback' => 'sanitize_text_field'
+                ),
+                array(
+                    'name' 				=> 'if_recaptcha_secret_key',
+                    'label' 			=> __( 'reCAPTCHA Secret Key', 'idea-factory' ),
+                    'desc' 				=> __( 'Enter your Google reCAPTCHA v2 Secret Key.', 'idea-factory' ),
+                    'type' 				=> 'text',
+                    'default' 			=> '',
+                    'sanitize_callback' => 'sanitize_text_field'
                 )
             ),
             'if_settings_advanced' 	=> array(

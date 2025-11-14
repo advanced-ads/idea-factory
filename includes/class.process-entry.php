@@ -37,6 +37,41 @@ class ideaFactoryProcessEntry {
 			// ok security passes so let's process some data
 			if ( wp_verify_nonce( $_POST['nonce'], 'if-entry-nonce' ) ) {
 
+				$recaptcha_secret_key = idea_factory_get_option( 'if_recaptcha_secret_key', 'if_settings_main' );
+				if ( ! empty( $recaptcha_secret_key ) ) {
+					$recaptcha_response = isset( $_POST['g-recaptcha-response'] ) ? $_POST['g-recaptcha-response'] : '';
+
+					if ( empty( $recaptcha_response ) ) {
+						printf(('<div class="error">%s</div>'), __('Please complete the reCAPTCHA verification.', 'idea-factory'));
+						exit();
+					}
+
+					// Verify with Google
+					$verify_url = 'https://www.google.com/recaptcha/api/siteverify';
+					$verify_data = array(
+						'secret' => $recaptcha_secret_key,
+						'response' => $recaptcha_response,
+						'remoteip' => isset( $_SERVER['REMOTE_ADDR'] ) ? $_SERVER['REMOTE_ADDR'] : ''
+					);
+
+					$verify_response = wp_remote_post( $verify_url, array(
+						'body' => $verify_data
+					) );
+
+					if ( is_wp_error( $verify_response ) ) {
+						printf(('<div class="error">%s</div>'), __('reCAPTCHA verification failed. Please try again.', 'idea-factory'));
+						exit();
+					}
+
+					$verify_body = wp_remote_retrieve_body( $verify_response );
+					$verify_result = json_decode( $verify_body, true );
+
+					if ( !isset( $verify_result['success'] ) || $verify_result['success'] !== true ) {
+						printf(('<div class="error">%s</div>'), __('reCAPTCHA verification failed. Please try again.', 'idea-factory'));
+						exit();
+					}
+				}
+
 				// bail if we dont have required fields
 				if ( empty( $title ) || empty( $desc ) ) {
 

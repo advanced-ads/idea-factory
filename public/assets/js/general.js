@@ -22,6 +22,17 @@ jQuery(document).ready(function($){
 	        return false;
 	    }
 
+		var $recaptcha = $('.g-recaptcha');
+		if ( $recaptcha.length > 0 ) {
+			var recaptchaResponse = $('textarea[name="g-recaptcha-response"]').val();
+			if ( !recaptchaResponse || recaptchaResponse === '' ) {
+				$(results).html('Please complete the reCAPTCHA verification.');
+				$recaptcha.css('border', '2px solid #d9534f');
+				return false;
+			}
+			$recaptcha.css('border', '');
+		}
+
 		$this.find(':submit').attr( 'disabled','disabled' );
 
   		var data = $this.serialize();

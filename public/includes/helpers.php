@@ -256,7 +256,7 @@ function idea_factory_has_public_voted( $postid = '', $ip = '' ) {
 
 	if ( empty( $ip ) )
 		$ip =  isset( $_SERVER['REMOTE_ADDR'] ) ? $_SERVER['REMOTE_ADDR'] : 0;
-        
+
     global $wpdb;
 
     $table = $wpdb->base_prefix.'idea_factory';
@@ -264,7 +264,7 @@ function idea_factory_has_public_voted( $postid = '', $ip = '' ) {
    	$sql =  $wpdb->prepare('SELECT * FROM '.$table.' WHERE ip ="%s" AND postid ="%d"', $ip, $postid );
 
    	$result =  $wpdb->get_results( $sql );
-        
+
 	if ( $result ) {
 
 		return true;
@@ -372,6 +372,15 @@ if ( !function_exists('idea_factory_submit_modal') ):
 								<textarea id="idea-factory--entryform_description" form="idea-factory--entry--form" name="idea-description" value="" placeholder="Make the description meaningful!"></textarea>
 
 								<?php do_action('idea_factory_inside_form_bottom');?>
+
+								<?php
+								$recaptcha_site_key = idea_factory_get_option( 'if_recaptcha_site_key', 'if_settings_main' );
+								if ( ! empty( $recaptcha_site_key ) ) {
+									?>
+									<div class="idea-factory-recaptcha-wrapper" style="margin-top: 15px;">
+										<div class="g-recaptcha" data-sitekey="<?php echo esc_attr( $recaptcha_site_key ); ?>"></div>
+									</div>
+								<?php } ?>
 
 								<input type="hidden" name="action" value="process_entry">
 								<input type="hidden" name="nonce" value="<?php echo wp_create_nonce('if-entry-nonce'); ?>"/>
