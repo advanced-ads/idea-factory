@@ -44,7 +44,7 @@ jQuery(document).ready(function($){
 
     });
 
-	$( '.idea-factory' ).live('click', function(e) {
+	$( '.idea-factory' ).on('click', function(e) {
 		e.preventDefault();
 
 		var $this = $(this);
